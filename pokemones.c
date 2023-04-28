@@ -14,10 +14,10 @@ FILE *fileNew;
 typedef struct 
 {
     int id;
-    char name[20];
-    char form[20];
-    char type1[20];
-    char type2[20];
+    char name[64];
+    char form[64];
+    char type1[64];
+    char type2[64];
     int total;
     int hp;
     int attack;
@@ -43,24 +43,27 @@ void load()
 {
     inFile = fopen(dato2, "r");
     
+    char line[128];
+
     if (inFile == NULL)
     {
         printf("El archivo no fue encontrado\n");  
     } 
-
     else
     {
 
         pokemonSP = NULL;
         num_registro = 0;
 
+        fgets(line,128,inFile);
+
         while (!feof(inFile))
         {
             PokemonBase pokemonS;
 
-            if(fscanf(inFile, "%d,\"%[^\"]\",\"%[^\"]\",\"%[^\"]\",\"%[^\"]\",%d,%d,%d,%d,%d,%d,%d,%d", &pokemonS.id, pokemonS.name,
-            pokemonS.form, pokemonS.type1, pokemonS.type2, &pokemonS.total, &pokemonS.hp, &pokemonS.attack, &pokemonS.defense, 
-            &pokemonS.spAtk, &pokemonS.spDef, &pokemonS.speed, &pokemonS.generation ) == 13)
+int result = fscanf(inFile, "%d,\"%[^\"]\",\"%[^\"]\",\"%[^\"]\",\"%[^\"]\",%d,%d,%d,%d,%d,%d,%d,%d", &pokemonS.id, pokemonS.name,pokemonS.form, pokemonS.type1, pokemonS.type2, &pokemonS.total, &pokemonS.hp, &pokemonS.attack, &pokemonS.defense,&pokemonS.spAtk, &pokemonS.spDef, &pokemonS.speed, &pokemonS.generation);  
+
+            if( result == 13)
             {
                 num_registro++;
                 pokemonSP = realloc(pokemonSP, num_registro * sizeof(PokemonBase));
@@ -80,7 +83,7 @@ void size()
 
 void range()
 {
-    int numero = atoi(&dato2);
+    int numero = atoi(dato2);
 
     for(int i = 0; i < numero; i++) 
     {
@@ -92,7 +95,7 @@ void range()
 
 void show()
 {
-    int numero = atoi(&dato2);
+    int numero = atoi(dato2);
 
     for (int i = 0; i < num_registro; i++)
     {
@@ -210,7 +213,7 @@ void search()
     }
     else if (strcmp(dato2, "total") == 0)
     {
-        int valor = atoi(&dato3);
+        int valor = atoi(dato3);
         for (int i = 0; i < num_registro; i++) 
         {
             if(pokemonSP[i].total == valor)
@@ -242,7 +245,7 @@ void search()
     }
     else if (strcmp(dato2, "hp") == 0)
     {
-        int valor = atoi(&dato3);
+        int valor = atoi(dato3);
         for (int i = 0; i < num_registro; i++) 
         {
             if(pokemonSP[i].hp == valor)
@@ -274,7 +277,7 @@ void search()
     }
     else if (strcmp(dato2, "attack") == 0)
     {
-        int valor = atoi(&dato3);
+        int valor = atoi(dato3);
         for (int i = 0; i < num_registro; i++) 
         {
             if(pokemonSP[i].attack == valor)
@@ -306,7 +309,7 @@ void search()
     }
     else if (strcmp(dato2, "defense") == 0)
     {
-        int valor = atoi(&dato3);
+        int valor = atoi(dato3);
         for (int i = 0; i < num_registro; i++) 
         {
             if(pokemonSP[i].defense == valor)
@@ -338,7 +341,7 @@ void search()
     }
     else if (strcmp(dato2, "sp.Atk") == 0)
     {
-        int valor = atoi(&dato3);
+        int valor = atoi(dato3);
         for (int i = 0; i < num_registro; i++) 
         {
             if(pokemonSP[i].spAtk == valor)
@@ -370,7 +373,7 @@ void search()
     }
     else if (strcmp(dato2, "sp.Def") == 0)
     {
-        int valor = atoi(&dato3);
+        int valor = atoi(dato3);
         for (int i = 0; i < num_registro; i++) 
         {
             if(pokemonSP[i].spDef == valor)
@@ -402,7 +405,7 @@ void search()
     }
     else if (strcmp(dato2, "speed") == 0)
     {
-        int valor = atoi(&dato3);
+        int valor = atoi(dato3);
         for (int i = 0; i < num_registro; i++) 
         {
             if(pokemonSP[i].speed == valor)
@@ -434,7 +437,7 @@ void search()
     }
     else if (strcmp(dato2, "generation") == 0)
     {
-        int valor = atoi(&dato3);
+        int valor = atoi(dato3);
         for (int i = 0; i < num_registro; i++) 
         {
             if(pokemonSP[i].generation == valor)
