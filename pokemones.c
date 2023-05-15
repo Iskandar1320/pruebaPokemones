@@ -61,7 +61,9 @@ void load()
         {
             PokemonBase pokemonS;
 
-int result = fscanf(inFile, "%d,\"%[^\"]\",\"%[^\"]\",\"%[^\"]\",\"%[^\"]\",%d,%d,%d,%d,%d,%d,%d,%d", &pokemonS.id, pokemonS.name,pokemonS.form, pokemonS.type1, pokemonS.type2, &pokemonS.total, &pokemonS.hp, &pokemonS.attack, &pokemonS.defense,&pokemonS.spAtk, &pokemonS.spDef, &pokemonS.speed, &pokemonS.generation);  
+            int result = fscanf(inFile, "%d,\"%[^\"]\",\"%[^\"]\",\"%[^\"]\",\"%[^\"]\",%d,%d,%d,%d,%d,%d,%d,%d", 
+            &pokemonS.id, pokemonS.name,pokemonS.form, pokemonS.type1, pokemonS.type2, &pokemonS.total, &pokemonS.hp,
+             &pokemonS.attack, &pokemonS.defense,&pokemonS.spAtk, &pokemonS.spDef, &pokemonS.speed, &pokemonS.generation);  
 
             if( result == 13)
             {
